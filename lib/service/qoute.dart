@@ -2,7 +2,7 @@
 
 import 'dart:convert';
 
-import 'package:api_qize/models/album.dart';
+import 'package:api_qize/models/qoute.dart';
 import 'package:http/http.dart' as http;
 
 class Qoute {
@@ -13,7 +13,10 @@ class Qoute {
     if (response.statusCode == 200) {
       // If the server did return a 200 OK response,
       // then parse the JSON.
-      return Album.fromJson(jsonDecode(response.body));
+      var result = Album.fromJson(jsonDecode(response.body));
+      print(result.tag);
+
+      return result;
     } else {
       // If the server did not return a 200 OK response,
       // then throw an exception.
