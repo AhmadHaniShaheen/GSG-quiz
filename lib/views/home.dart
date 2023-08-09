@@ -28,9 +28,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       floatingActionButton: FloatingActionButton(
-        onPressed: () async {
-          print('');
-        },
+        onPressed: () async {},
       ),
       body: FutureBuilder(
         future: futureImage,
@@ -69,17 +67,12 @@ class _HomePageState extends State<HomePage> {
                                 ),
                               ],
                             ),
-                            child: TextButton(
-                              onPressed: () {
-                                print(snapshot.data!.tag);
-                              },
-                              child: Text(
-                                snapshot.data!.contant,
-                                textAlign: TextAlign.center,
-                                style: const TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 32,
-                                ),
+                            child: Text(
+                              snapshot.data!.contant,
+                              textAlign: TextAlign.center,
+                              style: const TextStyle(
+                                color: Colors.white,
+                                fontSize: 32,
                               ),
                             ),
                           ),
@@ -88,6 +81,41 @@ class _HomePageState extends State<HomePage> {
                             style: const TextStyle(
                               color: Colors.white,
                               fontSize: 16,
+                            ),
+                          ),
+                          const SizedBox(
+                            height: 50,
+                          ),
+                          Container(
+                            padding: const EdgeInsets.all(8),
+                            width: 60,
+                            height: 60,
+                            decoration: BoxDecoration(
+                              color: const Color.fromARGB(255, 235, 154, 208)
+                                  .withOpacity(0.5),
+                              borderRadius: BorderRadius.circular(10),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.black.withOpacity(0.2),
+                                  blurRadius: 9.0,
+                                ),
+                              ],
+                            ),
+                            child: InkWell(
+                              onTap: () {
+                                setState(() {
+                                  futureAlbum = Future.delayed(
+                                      const Duration(seconds: 1),
+                                      () => Qoute().fetchAlbum());
+                                  futureImage = Future.delayed(
+                                      const Duration(seconds: 1),
+                                      () => ImageProv().fetchImage());
+                                });
+                              },
+                              child: const Icon(
+                                Icons.arrow_forward_ios,
+                                color: Colors.white,
+                              ),
                             ),
                           ),
                         ],
